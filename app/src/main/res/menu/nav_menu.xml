@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_bottom_home"
+        android:enabled="true"
+        android:title="@string/nav_home" />
+    <item
+        android:id="@+id/nav_tool"
+        android:icon="@drawable/ic_bottom_tool"
+        android:title="@string/nav_tool"
+        android:enabled="true" />
+    <item
+        android:id="@+id/nav_about"
+        android:icon="@drawable/ic_bottom_about"
+        android:title="@string/nav_about"
+        android:enabled="true" />
+</menu>
