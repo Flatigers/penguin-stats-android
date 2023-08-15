@@ -10,25 +10,94 @@
             type="org.penguin_stats.android.ui.AboutViewModel" />
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".ui.HomeFragment">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/bar_about"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/theme_statusBarDay"
-            app:title="@string/nav_about"
-            app:titleTextColor="@color/white"
-            app:titleCentered="true" />
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="todo" />
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="18dp"
+                app:cardBackgroundColor="@color/white_p"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                style="@style/Widget.Material3.CardView.Elevated">
 
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="86dp"
+                        android:layout_height="86dp"
+                        android:layout_marginTop="72dp"
+                        android:src="@mipmap/ic_launcher_round" />
+
+                    <TextView
+                        android:text="@string/app_name"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp" />
+
+                    <TextView
+                        android:text="@{about.versionName}"
+                        android:textSize="18sp"
+                        android:textAppearance="@style/tip_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="24dp" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <include
+                android:id="@+id/about_dev"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                layout="@layout/about_dev" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="18dp"
+                app:cardBackgroundColor="@color/white_p"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                style="@style/Widget.Material3.CardView.Elevated">
+
+                <include
+                    android:id="@+id/about_penguin"
+                    layout="@layout/about_penguin" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="18dp"
+                app:cardBackgroundColor="@color/white_p"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                style="@style/Widget.Material3.CardView.Elevated">
+
+                <include
+                    android:id="@+id/about_app"
+                    layout="@layout/about_app" />
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </ScrollView>
+
 </layout>

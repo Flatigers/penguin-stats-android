@@ -13,10 +13,11 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="@color/white_p"
         app:strokeColor="@color/blue10"
-        app:cardCornerRadius="8dp"
-        style="@style/Widget.Material3.CardView.Outlined">
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        style="@style/Widget.Material3.CardView.Elevated">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,10 +26,11 @@
 
             <TextView
                 android:text="@string/home_glance"
+                android:textStyle="bold"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
-                android:background="@color/blue20"
-                android:paddingStart="8dp"
+                android:background="@color/purple20"
+                android:paddingStart="16dp"
                 android:gravity="center_vertical" />
 
 
@@ -53,6 +55,7 @@
                 <TextView
                     android:text="@string/home_glance_sanity"
                     android:textSize="11sp"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|bottom" />
@@ -62,6 +65,7 @@
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                app:dividerColor="@color/pile20"
                 app:dividerInsetStart="12dp"
                 app:dividerInsetEnd="8dp" />
 
@@ -85,6 +89,7 @@
                 <TextView
                     android:text="@string/home_glance_reports"
                     android:textSize="11sp"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|bottom" />
@@ -94,6 +99,7 @@
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                app:dividerColor="@color/pile20"
                 app:dividerInsetStart="12dp"
                 app:dividerInsetEnd="8dp" />
 
@@ -117,6 +123,7 @@
                 <TextView
                     android:text="@string/home_glance_drops"
                     android:textSize="11sp"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|bottom" />

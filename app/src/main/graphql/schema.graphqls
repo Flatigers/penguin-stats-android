@@ -1,0 +1,99 @@
+### Scalars ###
+
+scalar Map
+scalar Time
+scalar Any
+
+### Directives ###
+
+directive @public on FIELD_DEFINITION
+directive @private(userIdFieldName: String = "userId") on FIELD_DEFINITION
+
+### Queries ###
+
+type User {
+    id: ID! @goTag(key: "bun", value: "user_id")
+    name: String!
+    email: String @private(userIdFieldName: "id")
+    attributes: Map
+}
+
+type Event {
+    id: ID! @goTag(key: "bun", value: "event_id")
+    research_id: ID! @goTag(key: "bun", value: "research_id")
+    content: Map!
+    user_id: ID! @goTag(key: "bun", value: "user_id")
+    created_at: Time!
+    user_agent: String
+}
+
+type Research {
+    id: ID! @goTag(key: "bun", value: "research_id")
+    name: String!
+    schema: Map!
+}
+
+type Topic {
+    id: ID @goTag(key: "bun", value: "topic_id")
+    filterInput: String!
+    resultMappingInput: String!
+}
+
+type CategoryCount {
+    category: Any!
+    count: Int!
+}
+
+type GroupCountResult {
+    results: [CategoryCount!]!
+    total: Int!
+}
+
+input GroupCountInput {
+    research_id: ID!
+    filterInput: String!
+    resultMappingInput: String!
+}
+
+type Query {
+    me: User!
+    research(id: ID!): Research!
+    researches: [Research!]!
+    groupCount(input: GroupCountInput!): GroupCountResult!
+}
+
+### Mutations ###
+
+input LoginInput {
+    email: String!
+    password: String!
+}
+
+input NewEvent {
+    content: Map!
+    research_id: String!
+    user_agent: String
+}
+
+type Mutation {
+    login(input: LoginInput!): User!
+    createEvent(input: NewEvent!): Event!
+}
+
+### gqlgen Directives ###
+
+directive @goModel(
+    model: String
+    models: [String!]
+) on OBJECT | INPUT_OBJECT | SCALAR | ENUM | INTERFACE | UNION
+
+directive @goField(
+    forceResolver: Boolean
+    name: String
+    omittable: Boolean
+) on INPUT_FIELD_DEFINITION | FIELD_DEFINITION
+
+directive @goTag(
+    key: String!
+    value: String
+) on INPUT_FIELD_DEFINITION | FIELD_DEFINITION

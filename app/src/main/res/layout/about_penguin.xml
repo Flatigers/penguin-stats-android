@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/about_members"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:drawablePadding="18dp"
+        android:text="@string/about_members"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:theme="@style/Widget.AppCompat.Button.Borderless"
+        app:drawableStartCompat="@drawable/icon_team" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:dividerInsetStart="18dp"
+        app:dividerInsetEnd="18dp" />
+
+    <TextView
+        android:id="@+id/about_changelog"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:drawablePadding="18dp"
+        android:text="@string/about_changelog"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:theme="@style/Widget.AppCompat.Button.Borderless"
+        app:drawableStartCompat="@drawable/icon_update" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:dividerInsetStart="18dp"
+        app:dividerInsetEnd="18dp" />
+
+    <TextView
+        android:id="@+id/about_links"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:drawablePadding="18dp"
+        android:text="@string/about_links"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:theme="@style/Widget.AppCompat.Button.Borderless"
+        app:drawableStartCompat="@drawable/icon_link" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:dividerInsetStart="18dp"
+        app:dividerInsetEnd="18dp" />
+
+    <TextView
+        android:id="@+id/about_credit"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:drawablePadding="18dp"
+        android:text="@string/about_credit"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:theme="@style/Widget.AppCompat.Button.Borderless"
+        app:drawableStartCompat="@drawable/icon_credits" />
+
+
+</LinearLayout>

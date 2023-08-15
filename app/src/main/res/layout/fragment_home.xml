@@ -19,66 +19,67 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/bar_home"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="52dp"
             android:background="@color/theme_statusBarDay"
             app:title="@string/nav_home"
-            app:titleTextColor="@color/white"
+            app:titleTextAppearance="@style/title_text"
             app:titleCentered="true" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/home_swipe_refresher"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
-                        android:text="@string/nav_home"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="16dp" />
+                        android:layout_margin="16dp"
+                        android:text="@string/nav_home" />
 
                     <include
-                        layout="@layout/home_glance"
                         android:id="@+id/home_glance"
+                        layout="@layout/home_glance"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         app:home="@{home}" />
 
                     <include
-                        layout="@layout/home_drop"
                         android:id="@+id/home_drop"
+                        layout="@layout/home_drop"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp" />
 
                     <include
-                        layout="@layout/home_report"
                         android:id="@+id/home_report"
+                        layout="@layout/home_report"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/home_open_browser"
-                        android:text="@string/home_web"
-                        android:textColor="@color/blue90"
+                        style="@style/Widget.Material3.Chip.Suggestion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         android:checkable="false"
                         android:clickable="true"
-                        app:ensureMinTouchTargetSize="true"
+                        app:chipIconEnabled="true"
+                        app:chipIcon="@drawable/icon_browser_open"
+                        android:text="@string/home_web"
+                        android:textStyle="bold"
+                        android:textColor="@color/blue90"
                         app:chipStrokeColor="@color/blue10"
-                        style="@style/Widget.Material3.Chip.Suggestion" />
+                        app:ensureMinTouchTargetSize="true" />
 
                 </LinearLayout>
             </ScrollView>

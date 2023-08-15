@@ -19,10 +19,10 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/bar_tool"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="52dp"
             android:background="@color/theme_statusBarDay"
             app:title="@string/nav_tool"
-            app:titleTextColor="@color/white"
+            app:titleTextAppearance="@style/title_text"
             app:titleCentered="true" />
 
         <TextView

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">企鹅物流数据统计</string>
+    <string name="nav_home">首页</string>
+    <string name="nav_tool">工具</string>
+    <string name="nav_about">关于</string>
+    <string name="home_refresh">下拉刷新</string>
+    <string name="home_glance">全站数据一览</string>
+    <string name="home_glance_sanity">所有汇报消耗理智</string>
+    <string name="home_glance_reports">掉落汇报总数量</string>
+    <string name="home_glance_drops">物品掉落总数</string>
+    <string name="home_drop">素材掉率</string>
+    <string name="home_drop_stage">按章节</string>
+    <string name="home_drop_item">按素材</string>
+    <string name="home_report">掉率汇报</string>
+    <string name="home_report_stage">按章节</string>
+    <string name="home_report_reco">截图识别</string>
+    <string name="home_web">在浏览器中打开</string>
+    <string name="home_web_loading">加载中……</string>
+    <string name="about_members">团队成员</string>
+    <string name="about_changelog">更新记录</string>
+    <string name="about_links">友情链接</string>
+    <string name="about_credit">内容来源</string>
+    <string name="about_settings">设置</string>
+    <string name="about_opensource">开源地址</string>
+    <string name="about_privacy">用户协议</string>
+    <string name="about_dev">参与开发</string>
+    <string name="about_donate">捐助</string>
+    <string name="about_contact">联系我们</string>
+    <string name="about_content_license">数据许可</string>
+</resources>
