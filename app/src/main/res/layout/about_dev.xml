@@ -37,6 +37,28 @@
         style="@style/Widget.Material3.CardView.Elevated">
 
         <TextView
+            android:id="@+id/about_donate"
+            android:text="@string/about_donate"
+            android:textStyle="bold"
+            android:maxLines="2"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:theme="@style/Widget.AppCompat.Button.Borderless"
+            android:padding="6dp"
+            android:gravity="bottom|center_horizontal" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardBackgroundColor="@color/white_p"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="3dp"
+        style="@style/Widget.Material3.CardView.Elevated">
+
+        <TextView
             android:id="@+id/about_contact"
             android:text="@string/about_contact"
             android:textStyle="bold"
@@ -61,28 +83,6 @@
             android:id="@+id/about_contact_license"
             android:text="@string/about_content_license"
             android:textStyle="bold"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:theme="@style/Widget.AppCompat.Button.Borderless"
-            android:padding="6dp"
-            android:gravity="bottom|center_horizontal" />
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardBackgroundColor="@color/white_p"
-        app:cardCornerRadius="18dp"
-        app:cardElevation="3dp"
-        style="@style/Widget.Material3.CardView.Elevated">
-
-        <TextView
-            android:id="@+id/about_donate"
-            android:text="@string/about_donate"
-            android:textStyle="bold"
-            android:maxLines="2"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:theme="@style/Widget.AppCompat.Button.Borderless"

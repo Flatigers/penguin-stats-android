@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">企鹅物流数据统计</string>
+    <string name="s_is_mirror_site">使用国内镜像</string>
+    <string name="s_server">默认服务器</string>
+    <string name="s_server_cn">国服</string>
+    <string name="s_server_us">美服</string>
+    <string name="s_server_jp">日服</string>
     <string name="nav_home">首页</string>
     <string name="nav_tool">工具</string>
     <string name="nav_about">关于</string>
@@ -28,4 +33,18 @@
     <string name="about_donate">捐助</string>
     <string name="about_contact">联系我们</string>
     <string name="about_content_license">数据许可</string>
+    <string name="tool_notice">公告</string>
+    <string name="tool_roguelike">集成战略统计</string>
+    <string name="tool_farming_tool">刷图规划器</string>
+    <string name="tool_advanced_query">高级查询</string>
+    <string name="zone_all">所有</string>
+    <string name="zone_event_opening">限时活动—开放中</string>
+    <string name="zone_main_theme">主题曲</string>
+    <string name="zone_intermezzi">插曲&amp;别传</string>
+    <string name="zone_event_closed">限时活动—已结束</string>
+    <string name="zone_supplies">资源收集</string>
+    <string name="zone_recruit">公开招募统计</string>
+    <string name="zone_gachabox">物资补给箱</string>
+    <string name="s_server_kr">韩服</string>
+    <string name="s_is_night">使用夜间模式</string>
 </resources>
