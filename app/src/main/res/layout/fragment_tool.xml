@@ -25,10 +25,53 @@
             app:titleTextAppearance="@style/title_text"
             app:titleCentered="true" />
 
-        <TextView
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/tool_swipe_refresher"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="todo" />
+            android:layout_height="match_parent">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include
+                        android:id="@+id/tool_notice"
+                        layout="@layout/tool_notice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp" />
+
+                    <include
+                        android:id="@+id/tool_roguelike"
+                        layout="@layout/tool_roguelike"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp" />
+
+                    <include
+                        android:id="@+id/tool_farming_tool"
+                        layout="@layout/tool_farming_tool"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp" />
+
+                    <include
+
+                        android:id="@+id/tool_advanced_query"
+                        layout="@layout/tool_advanced_query"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp" />
+
+                </LinearLayout>
+            </ScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
     </LinearLayout>
 </layout>

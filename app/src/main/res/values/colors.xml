@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFBFA</color>
+    <color name="white_p">#FFFFFFFF</color>
+    <color name="white90">#E6FFFFFF</color>
+    <color name="pile">#5F5F5F</color>
+    <color name="pile10">#E6EEEEEE</color>
+    <color name="pile20">#CCEEEEEE</color>
+    <color name="fb_blue">#1877F2</color>
+
+    <color name="purple400">#5C6BC0</color>
+    <color name="purple4">#7C4DFF</color>
+    <color name="purple">#651FFF</color>
+    <color name="purple20">#33651FFF</color>
+    <color name="pink20">#33EA80FC</color>
+    <color name="pink40">#66EA80FC</color>
+    <color name="pink10">#0DB388FF</color>
+    <color name="green20">#33CCFF90</color>
+    <color name="green40">#66CCFF90</color>
+    <color name="blue20">#330091EA</color>
+    <color name="blue10">#1A0091EA</color>
+    <color name="blue5">#0D0091EA</color>
+    <color name="blue1">#030091EA</color>
+    <color name="blue40">#660091EA</color>
+    <color name="blue90">#E60091EA</color>
+    <color name="white_pink">#F5F0F0</color>
+
+
+    <!--Theme Color-->
+    <color name="theme_negative">@color/pile</color>
+    <color name="theme_positive">@color/fb_blue</color>
+    <color name="theme_statusBarDay">@color/white</color>
+    <color name="theme_statusBarNight">@color/black</color>
+    <color name="primary">#448AFF</color>
+    <color name="primaryVariant">#536DFE</color>
+    <color name="onPrimary">#00E676</color>
+    <color name="accent">#3D5AFE</color>
+    <color name="secondary">#651FFF</color>
+    <color name="secondaryVariant">#C6FF00</color>
+    <color name="onSecondary">#00C853</color>
+
+</resources>
