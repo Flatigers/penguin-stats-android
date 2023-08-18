@@ -6,7 +6,7 @@
 
     <!-- Settings -->
     <string name="s_is_night">Enable night mode</string>
-    <string name="s_is_mirror_site">Use .cn mirror</string>
+    <string name="s_is_mirror_site">Use .cn site</string>
     <string name="s_server">Default server</string>
     <string name="s_server_cn">CN</string>
     <string name="s_server_us">US</string>

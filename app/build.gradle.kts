@@ -60,6 +60,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.apollographql.apollo3:apollo-runtime:4.0.0-alpha.3")
+    implementation("io.noties.markwon:core:4.6.2")
 
     testImplementation("junit:junit:4.13.2")
 }

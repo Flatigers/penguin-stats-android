@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="tool"
             type="org.penguin_stats.android.ui.ToolViewModel" />
@@ -40,11 +39,12 @@
                     android:orientation="vertical">
 
                     <include
-                        android:id="@+id/tool_notice"
-                        layout="@layout/tool_notice"
+                        android:id="@+id/tool_glance"
+                        layout="@layout/tool_glance"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="16dp" />
+                        android:layout_margin="16dp"
+                        app:tool="@{tool}" />
 
                     <include
                         android:id="@+id/tool_roguelike"

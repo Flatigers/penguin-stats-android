@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">企鹅物流数据统计</string>
-    <string name="s_is_mirror_site">使用国内镜像</string>
+    <string name="s_is_mirror_site">使用 .cn 站</string>
     <string name="s_server">默认服务器</string>
     <string name="s_server_cn">国服</string>
     <string name="s_server_us">美服</string>

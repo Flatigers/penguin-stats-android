@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
-            name="home"
-            type="org.penguin_stats.android.ui.HomeViewModel" />
+            name="tool"
+            type="org.penguin_stats.android.ui.ToolViewModel" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -45,8 +44,8 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/home_glance_sanity"
-                    android:text="{home.totalStats.sanity}"
+                    android:id="@+id/tool_glance_sanity"
+                    android:text="@{tool.totalStats.sanity}"
                     android:textSize="20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -79,8 +78,8 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/home_glance_report"
-                    android:text="{home.totalStats.reports}"
+                    android:id="@+id/tool_glance_report"
+                    android:text="@{tool.totalStats.reports}"
                     android:textSize="20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -113,8 +112,8 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/home_glance_drop"
-                    android:text="{home.totalStats.drops}"
+                    android:id="@+id/tool_glance_drop"
+                    android:text="@{tool.totalStats.drops}"
                     android:textSize="20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

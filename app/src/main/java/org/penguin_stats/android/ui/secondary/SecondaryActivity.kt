@@ -6,12 +6,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import org.penguin_stats.android.R
+import org.penguin_stats.android.app.AppConfig
+import org.penguin_stats.android.app.BaseCompatActivity
 import org.penguin_stats.android.databinding.ActivitySecondaryBinding
+import org.penguin_stats.android.util.rawUriStr
 
-class SecondaryActivity : AppCompatActivity() {
+class SecondaryActivity : BaseCompatActivity() {
     private var titleRes: Int = 0
     private lateinit var binding: ActivitySecondaryBinding
 
@@ -49,19 +51,31 @@ class SecondaryActivity : AppCompatActivity() {
             }
 
             R.string.about_members -> {
-                SecWebViewerPage.new("https://baidu.com")
+                SecWebViewerPage.new(
+                    "https://penguin-stats." +
+                            AppConfig.getDomain() + "/about/members"
+                )
             }
 
             R.string.about_changelog -> {
-                SecWebViewerPage.new("https://baidu.com")
+                SecWebViewerPage.new(
+                    "https://penguin-stats." +
+                            AppConfig.getDomain() + "/about/changelog"
+                )
             }
 
             R.string.about_links -> {
-                SecWebViewerPage.new("https://baidu.com")
+                SecWebViewerPage.new(
+                    "https://penguin-stats." +
+                            AppConfig.getDomain() + "/about/links"
+                )
             }
 
             R.string.about_credit -> {
-                SecWebViewerPage.new("https://baidu.com")
+                SecWebViewerPage.new(
+                    "https://penguin-stats." +
+                            AppConfig.getDomain() + "/about/credits"
+                )
             }
 
             R.string.about_settings -> {
@@ -73,7 +87,7 @@ class SecondaryActivity : AppCompatActivity() {
             }
 
             R.string.about_privacy -> {
-                SecWebViewerPage.new("https://baidu.com")
+                SecWebViewerPage.new(rawUriStr(R.raw.licenses))
             }
 
             else -> {

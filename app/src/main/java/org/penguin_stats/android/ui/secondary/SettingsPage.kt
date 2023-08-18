@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import org.penguin_stats.android.R
+import org.penguin_stats.android.app.AppConfig
 import org.penguin_stats.android.databinding.FragmentSecSettingsBinding
 
 
@@ -16,7 +17,7 @@ class SettingsPage : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_sec_settings, container, false)
         return binding.root
@@ -25,14 +26,25 @@ class SettingsPage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.sIsNight.setOnCheckedChangeListener { _, isChecked -> }
-        binding.sMirror.setOnCheckedChangeListener { _, isChecked -> }
-        binding.sServerGroup.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId) {
-                R.id.s_server_cn -> {}
-                R.id.s_server_us -> {}
-                R.id.s_server_jp -> {}
-                R.id.s_server_kr -> {}
+        binding.sIsNight.setOnCheckedChangeListener { _, isChecked ->
+            // TODO
+        }
+        binding.sMirror.apply {
+            isChecked = AppConfig.isMirror()
+            setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) AppConfig.setDomainCN() else AppConfig.setDomainIO()
+            }
+        }
+
+        binding.sServerGroup.apply {
+            check(AppConfig.whichServer())
+            setOnCheckedChangeListener { _, checkedId ->
+                when (checkedId) {
+                    R.id.s_server_cn -> AppConfig.setServerCN()
+                    R.id.s_server_us -> AppConfig.setServerUS()
+                    R.id.s_server_jp -> AppConfig.setServerJP()
+                    R.id.s_server_kr -> AppConfig.setServerKR()
+                }
             }
         }
     }

@@ -7,11 +7,12 @@ import android.content.Context
 class BaseApplication : Application() {
     companion object {
         @SuppressLint("StaticFieldLeak")
-        var context: Context? = null
+        lateinit var context: Context
     }
 
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
+        AppConfig
     }
 }
