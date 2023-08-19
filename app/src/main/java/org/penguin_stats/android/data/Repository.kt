@@ -70,6 +70,7 @@ object Repository {
                         zoneUI.add(
                             ZoneUI(
                                 it.zoneId,
+                                it.type,
                                 it.zoneName_i18n,
                                 it.existence,
                                 it.stages

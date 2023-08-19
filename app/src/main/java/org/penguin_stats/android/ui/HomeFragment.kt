@@ -18,6 +18,7 @@ import org.penguin_stats.android.R
 import org.penguin_stats.android.app.AppConfig
 import org.penguin_stats.android.data.Repository
 import org.penguin_stats.android.databinding.FragmentHomeBinding
+import org.penguin_stats.android.ui.secondary.SecondaryActivity
 import org.penguin_stats.android.util.codeFromI18N
 
 
@@ -64,14 +65,21 @@ class HomeFragment : Fragment() {
             }
         }
 
-        // TODO
         val drop = binding.homeDrop
-        drop.homeDropStage.setOnClickListener { TodoInfoPage.start(requireActivity()) }
-        drop.homeDropItem.setOnClickListener { TodoInfoPage.start(requireActivity()) }
+        drop.homeDropStage.setOnClickListener {
+            SecondaryActivity.start(requireActivity(), R.string.home_drop_stage)
+        }
+        drop.homeDropItem.setOnClickListener {
+            SecondaryActivity.start(requireActivity(), R.string.home_drop_item)
+        }
 
         val report = binding.homeReport
-        report.homeReportStage.setOnClickListener { TodoInfoPage.start(requireActivity()) }
-        report.homeReportReco.setOnClickListener { TodoInfoPage.start(requireActivity()) }
+        report.homeReportStage.setOnClickListener {
+            SecondaryActivity.start(requireActivity(), R.string.home_report_stage)
+        }
+        report.homeReportReco.setOnClickListener {
+            SecondaryActivity.start(requireActivity(), R.string.home_report_reco)
+        }
 
         binding.homeOpenBrowser.setOnClickListener {
             Intent().apply {

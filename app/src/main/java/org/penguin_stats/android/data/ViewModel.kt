@@ -9,7 +9,8 @@ data class TotalStatsUI(
 
 data class ZoneUI(
     val zoneId: String,
-    val zoneNameI18n: CodeI18n,
+    val type: String,
+    val zoneNameI18n: CodeI18N,
     val existence: Existence,
     val stages: List<String>,
 )
@@ -17,6 +18,6 @@ data class ZoneUI(
 data class StageUI(
     val stageId: String,
     val zoneId: String,
-    val code_i18n: CodeI18n,
+    val code_i18n: CodeI18N,
     val existence: Existence,
 )

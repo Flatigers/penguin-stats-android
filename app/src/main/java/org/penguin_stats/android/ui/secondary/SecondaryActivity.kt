@@ -3,7 +3,6 @@ package org.penguin_stats.android.ui.secondary
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.annotation.StringRes
 import androidx.fragment.app.commit
@@ -24,8 +23,6 @@ class SecondaryActivity : BaseCompatActivity() {
 
         setSupportActionBar(binding.secBar)
         titleRes = intent.getIntExtra("title", 0)
-        Log.e("a", titleRes.toString())
-
         val titleText = resources.getString(titleRes)
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
@@ -34,64 +31,45 @@ class SecondaryActivity : BaseCompatActivity() {
         }
 
         val fragment = when (titleRes) {
-            R.string.about_dev -> {
+            R.string.home_drop_stage -> StagePage.new(StagePage.QUERY)
+
+            R.string.home_drop_item -> {
                 SecWebViewerPage.new("https://baidu.com")
             }
 
-            R.string.about_donate -> {
+            R.string.home_report_stage -> StagePage.new(StagePage.REPORT)
+
+            R.string.home_report_reco -> {
                 SecWebViewerPage.new("https://baidu.com")
             }
 
-            R.string.about_contact -> {
-                SecWebViewerPage.new("https://baidu.com")
-            }
+            R.string.about_dev -> SecWebViewerPage.new("https://baidu.com")
+            R.string.about_donate -> SecWebViewerPage.new("https://baidu.com")
+            R.string.about_contact -> SecWebViewerPage.new("https://baidu.com")
+            R.string.about_content_license -> SecWebViewerPage.new("https://baidu.com")
+            R.string.about_members -> SecWebViewerPage.new(
+                "https://penguin-stats." + AppConfig.getDomain() + "/about/members"
+            )
 
-            R.string.about_content_license -> {
-                SecWebViewerPage.new("https://baidu.com")
-            }
+            R.string.about_changelog -> SecWebViewerPage.new(
+                "https://penguin-stats." + AppConfig.getDomain() + "/about/changelog"
+            )
 
-            R.string.about_members -> {
-                SecWebViewerPage.new(
-                    "https://penguin-stats." +
-                            AppConfig.getDomain() + "/about/members"
-                )
-            }
+            R.string.about_links -> SecWebViewerPage.new(
+                "https://penguin-stats." + AppConfig.getDomain() + "/about/links"
+            )
 
-            R.string.about_changelog -> {
-                SecWebViewerPage.new(
-                    "https://penguin-stats." +
-                            AppConfig.getDomain() + "/about/changelog"
-                )
-            }
+            R.string.about_credit -> SecWebViewerPage.new(
+                "https://penguin-stats." + AppConfig.getDomain() + "/about/credits"
+            )
 
-            R.string.about_links -> {
-                SecWebViewerPage.new(
-                    "https://penguin-stats." +
-                            AppConfig.getDomain() + "/about/links"
-                )
-            }
+            R.string.about_settings -> SettingsPage.new()
+            R.string.about_opensource -> SecWebViewerPage.new("https://github.com/Flatigers/penguin-stats-android")
+            R.string.about_privacy -> SecWebViewerPage.new(rawUriStr(R.raw.licenses))
 
-            R.string.about_credit -> {
-                SecWebViewerPage.new(
-                    "https://penguin-stats." +
-                            AppConfig.getDomain() + "/about/credits"
-                )
-            }
-
-            R.string.about_settings -> {
-                SettingsPage.new()
-            }
-
-            R.string.about_opensource -> {
-                SecWebViewerPage.new("https://baidu.com")
-            }
-
-            R.string.about_privacy -> {
-                SecWebViewerPage.new(rawUriStr(R.raw.licenses))
-            }
 
             else -> {
-                SecWebViewerPage.new("baidu.com")
+                SecWebViewerPage.new("https://penguin-stats." + AppConfig.getDomain())
             }
         }
 
