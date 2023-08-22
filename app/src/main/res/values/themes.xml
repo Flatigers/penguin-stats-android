@@ -11,7 +11,6 @@
         <item name="colorSecondaryVariant">@color/secondaryVariant</item>
         <item name="colorOnSecondary">@color/onSecondary</item>
         <item name="colorAccent">@color/accent</item>
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/theme_statusBarDay</item>
         <item name="android:navigationBarColor">@color/theme_statusBarDay</item>

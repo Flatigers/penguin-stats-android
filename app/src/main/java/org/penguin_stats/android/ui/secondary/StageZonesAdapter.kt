@@ -36,7 +36,7 @@ class StageZonesAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val zone = zones[position]
-        holder.zoneImage.setImageResource(R.drawable.icon_game_42)
+        holder.zoneImage.setImageResource(R.drawable.defaults)
         holder.zoneText.text = codeFromI18N(zone.zoneNameI18n, zone.existence)
         holder.zoneCard.setOnClickListener {
             buildDialog(zone)

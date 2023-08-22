@@ -10,6 +10,7 @@ import org.penguin_stats.android.R
 import org.penguin_stats.android.app.AppConfig
 import org.penguin_stats.android.app.BaseCompatActivity
 import org.penguin_stats.android.databinding.ActivitySecondaryBinding
+import org.penguin_stats.android.util.inputStreamToStr
 import org.penguin_stats.android.util.rawUriStr
 
 class SecondaryActivity : BaseCompatActivity() {
@@ -33,19 +34,17 @@ class SecondaryActivity : BaseCompatActivity() {
         val fragment = when (titleRes) {
             R.string.home_drop_stage -> StagePage.new(StagePage.QUERY)
 
-            R.string.home_drop_item -> {
-                SecWebViewerPage.new("https://baidu.com")
-            }
+            R.string.home_drop_item -> ItemPage.new()
 
             R.string.home_report_stage -> StagePage.new(StagePage.REPORT)
 
             R.string.home_report_reco -> {
-                SecWebViewerPage.new("https://baidu.com")
+                SecWebViewerPage.new("https://penguin-stats." + AppConfig.getDomain())
             }
 
-            R.string.about_dev -> SecWebViewerPage.new("https://baidu.com")
-            R.string.about_donate -> SecWebViewerPage.new("https://baidu.com")
-            R.string.about_contact -> SecWebViewerPage.new("https://baidu.com")
+            R.string.about_dev -> DevPage.new()
+            R.string.about_donate -> DonatePage.new()
+            R.string.about_contact -> ContactPage.new()
             R.string.about_content_license -> SecWebViewerPage.new("https://baidu.com")
             R.string.about_members -> SecWebViewerPage.new(
                 "https://penguin-stats." + AppConfig.getDomain() + "/about/members"
@@ -59,8 +58,8 @@ class SecondaryActivity : BaseCompatActivity() {
                 "https://penguin-stats." + AppConfig.getDomain() + "/about/links"
             )
 
-            R.string.about_credit -> SecWebViewerPage.new(
-                "https://penguin-stats." + AppConfig.getDomain() + "/about/credits"
+            R.string.about_credit -> SecMarkdownPage.new(
+                inputStreamToStr(resources.openRawResource(R.raw.credits))
             )
 
             R.string.about_settings -> SettingsPage.new()

@@ -7,21 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import org.penguin_stats.android.R
 
-class ItemPage : Fragment() {
+class DonatePage : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_sec_item, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        return inflater.inflate(R.layout.fragment_sec_donate, container, false)
     }
 
     companion object {
+
         @JvmStatic
-        fun new() = ItemPage()
+        fun new() = DonatePage()
     }
 }

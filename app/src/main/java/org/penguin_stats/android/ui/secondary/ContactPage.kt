@@ -7,21 +7,25 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import org.penguin_stats.android.R
 
-class ItemPage : Fragment() {
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
+
+class ContactPage : Fragment() {
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_sec_item, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_sec_contact, container, false)
     }
 
     companion object {
+
         @JvmStatic
-        fun new() = ItemPage()
+        fun new() = ContactPage()
     }
 }

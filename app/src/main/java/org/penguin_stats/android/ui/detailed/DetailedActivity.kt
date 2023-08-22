@@ -4,10 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import org.penguin_stats.android.R
+import org.penguin_stats.android.app.BaseCompatActivity
 
-class DetailedActivity : AppCompatActivity() {
+class DetailedActivity : BaseCompatActivity() {
     private var pType = QUERY
     private var info = ""
 

@@ -33,6 +33,12 @@
     <string name="home_web">Open in browser</string>
     <string name="home_web_loading">Loading…</string>
 
+    <!-- Fragment: Tool -->
+    <string name="tool_notice">Notice</string>
+    <string name="tool_roguelike">Roguelike Stats</string>
+    <string name="tool_farming_tool">Farming Tool</string>
+    <string name="tool_advanced_query">Advanced Query</string>
+
     <!-- Fragment: About -->
     <string name="about_members">Members</string>
     <string name="about_changelog">Changelogs</string>
@@ -46,16 +52,8 @@
     <string name="about_contact">Contact us</string>
     <string name="about_content_license">Content License</string>
 
-    <!-- Fragment: About -->
-    <string name="tool_notice">Notice</string>
-    <string name="tool_roguelike">Roguelike Stats</string>
-    <string name="tool_farming_tool">Farming Tool</string>
-    <string name="tool_advanced_query">Advanced Query</string>
-
-    <!-- StageActivity -->
-
-    <!--Page Stages&Zones-->
-    <string name="zone_all">All</string>
+    <!--Page Zones&Items-->
+    <string name="all">All</string>
     <string name="zone_event_opening">Event(Opening)</string>
     <string name="zone_main_theme">Main Theme</string>
     <string name="zone_intermezzi">Intermezzi&amp;Side Story</string>
@@ -63,6 +61,12 @@
     <string name="zone_supplies">Supplies</string>
     <string name="zone_recruit">Recruit</string>
     <string name="zone_gachabox">Gachabox</string>
+    <string name="item_material">Material</string>
+    <string name="item_card">Battle Record</string>
+    <string name="item_chip">Chip</string>
+    <string name="item_furniture">Furniture</string>
+    <string name="item_activity">Activity Item</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
 

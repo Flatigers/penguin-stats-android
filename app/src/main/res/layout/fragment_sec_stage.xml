@@ -17,8 +17,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            tools:context=".ui.secondary.StagePage">
+            android:orientation="vertical">
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/stage_chip_group"
@@ -32,7 +31,7 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/stage_chip_all"
-                    android:text="@string/zone_all"
+                    android:text="@string/all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"

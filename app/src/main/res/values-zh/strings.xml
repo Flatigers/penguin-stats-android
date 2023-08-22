@@ -37,7 +37,7 @@
     <string name="tool_roguelike">集成战略统计</string>
     <string name="tool_farming_tool">刷图规划器</string>
     <string name="tool_advanced_query">高级查询</string>
-    <string name="zone_all">所有</string>
+    <string name="all">所有</string>
     <string name="zone_event_opening">限时活动—开放中</string>
     <string name="zone_main_theme">主题曲</string>
     <string name="zone_intermezzi">插曲&amp;别传</string>
@@ -47,4 +47,9 @@
     <string name="zone_gachabox">物资补给箱</string>
     <string name="s_server_kr">韩服</string>
     <string name="s_is_night">使用夜间模式</string>
+    <string name="item_material">材料</string>
+    <string name="item_card">作战记录</string>
+    <string name="item_chip">芯片</string>
+    <string name="item_furniture">家具</string>
+    <string name="item_activity">活动道具</string>
 </resources>
