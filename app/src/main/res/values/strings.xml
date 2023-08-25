@@ -66,8 +66,14 @@
     <string name="item_chip">Chip</string>
     <string name="item_furniture">Furniture</string>
     <string name="item_activity">Activity Item</string>
+    <string name="item_recruit">Recruit Tag</string>
+
+    <!--Page Donate-->
+    <string name="donate_text_a">Increasing number of users and server fees are putting Penguin Statistics into crisis. In order to protect our beloved Penguin Statistics, the webmaster decided to...</string>
+    <string name="donate_text_b">The number of users is increasing. The server is becoming overwhelmed. We will appreciate it a lot if Doctors can donate some server fee . We greatly appreciate your support! </string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">…</string>
 
 </resources>

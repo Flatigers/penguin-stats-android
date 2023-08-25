@@ -44,7 +44,10 @@ class StagePage : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (Repository.isZonesUISaved() && Repository.isStagesUISaved()) {
-            viewModel.zones.set(Repository.readZonesUI())
+            val zones = Repository.readZonesUI()
+            viewModel.zones.set(zones)
+            viewModel.filteredZones.set(zones)
+            viewModel.stages.set(Repository.readStagesUI())
         }
 
         binding.stageRefresher.run {
@@ -56,6 +59,7 @@ class StagePage : Fragment() {
                     withContext(Dispatchers.Main) {
                         isRefreshing = false
                         binding.stageChipGroup.check(R.id.stage_chip_all)
+                        setAdapter()
                     }
                 }
             }
@@ -73,27 +77,26 @@ class StagePage : Fragment() {
                     R.id.stage_chip_supply -> it.type == "WEEKLY"
                     R.id.stage_chip_recurit -> it.type == "RECRUIT"
                     R.id.stage_chip_gachabox -> it.type == "GACHABOX"
-                    else -> true
+                    else -> false
                 }
             })
-            val adapter =
-                StageZonesAdapter(
-                    requireActivity(), type,
-                    viewModel.filteredZones.get() ?: listOf(), viewModel.stages
-                )
-            binding.stageRecycler.adapter = adapter
+            setAdapter()
         }
 
         val layoutManager = GridLayoutManager(requireActivity(), 2)
         binding.stageRecycler.layoutManager = layoutManager
-        val adapter = StageZonesAdapter(
-            requireActivity(), type,
-            viewModel.zones.get() ?: listOf(), viewModel.stages
-        )
-        binding.stageRecycler.adapter = adapter
+        setAdapter()
 
 
         if (type == REPORT) typeReportFunc()
+    }
+
+    private fun setAdapter() {
+        viewModel.adapter = StageZonesAdapter(
+            requireActivity(), type,
+            viewModel.filteredZones.get() ?: listOf(), viewModel.stages.get() ?: listOf()
+        )
+        binding.stageRecycler.adapter = viewModel.adapter
     }
 
     private fun typeReportFunc() {

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -36,7 +37,11 @@ class StageZonesAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val zone = zones[position]
-        holder.zoneImage.setImageResource(R.drawable.defaults)
+        val uri = "https://penguin.upyun.galvincdn.com" + zone.background
+        Glide.with(context)
+            .load(uri)
+            .placeholder(R.drawable.defaults)
+            .into(holder.zoneImage)
         holder.zoneText.text = codeFromI18N(zone.zoneNameI18n, zone.existence)
         holder.zoneCard.setOnClickListener {
             buildDialog(zone)
@@ -57,9 +62,7 @@ class StageZonesAdapter(
                 find?.code_i18n ?: DefaultI18N.defaultCodeI18N(),
                 find?.existence ?: DefaultI18N.defaultExistence()
             )
-            if (name == "") {
-                continue
-            }
+            if (name == "") continue
             chip.run {
                 text = name
                 isCheckable = true

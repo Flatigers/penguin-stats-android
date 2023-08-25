@@ -1,53 +1,56 @@
 package org.penguin_stats.android.data
 
-import android.content.Context
-import androidx.core.content.edit
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import org.penguin_stats.android.app.BaseApplication
+import com.tencent.mmkv.MMKV
 
 object ViewDao {
 
     fun saveStatsUI(stats: TotalStatsUI) {
-        sharedPreference().edit {
-            putString("stats", Gson().toJson(stats))
-        }
+        mmkv().encode("stats", Gson().toJson(stats))
+    }
+
+    fun saveZonesUI(zones: List<ZoneUI>) {
+        mmkv().encode("zones", Gson().toJson(zones))
+    }
+
+    fun saveStagesUI(stages: List<StageUI>) {
+        mmkv().encode("stages", Gson().toJson(stages))
+    }
+
+    fun saveItemsUI(items: List<ItemUI>) {
+        mmkv().encode("items", Gson().toJson(items))
     }
 
     fun readStatsUI(): TotalStatsUI {
-        val data = sharedPreference().getString("stats", "")
+        val data = mmkv().decodeString("stats")
         return Gson().fromJson(data, TotalStatsUI::class.java)
-    }
-
-    fun saveZonesUI(zone: List<ZoneUI>) {
-        sharedPreference().edit {
-            putString("zones", Gson().toJson(zone))
-        }
     }
 
     fun readZonesUI(): List<ZoneUI> {
         val typeOf = object : TypeToken<List<ZoneUI>>() {}.type
-        val data = sharedPreference().getString("zones", "")
+        val data = mmkv().decodeString("zones")
         return Gson().fromJson(data, typeOf)
-    }
-
-    fun saveStagesUI(zone: List<StageUI>) {
-        sharedPreference().edit {
-            putString("stages", Gson().toJson(zone))
-        }
     }
 
     fun readStagesUI(): List<StageUI> {
         val typeOf = object : TypeToken<List<StageUI>>() {}.type
-        val data = sharedPreference().getString("stages", "")
+        val data = mmkv().decodeString("stages")
         return Gson().fromJson(data, typeOf)
     }
 
-    fun isStatsUISaved() = sharedPreference().contains("stats")
-    fun isZonesUISaved() = sharedPreference().contains("zones")
-    fun isStagesUISaved() = sharedPreference().contains("stages")
+    fun readItemsUI(): List<ItemUI> {
+        val typeOf = object : TypeToken<List<ItemUI>>() {}.type
+        val data = mmkv().decodeString("items")
+        return Gson().fromJson(data, typeOf)
+    }
 
 
-    private fun sharedPreference() = BaseApplication.context
-        .getSharedPreferences("viewData", Context.MODE_PRIVATE)
+    fun isStatsUISaved() = mmkv().contains("stats")
+    fun isZonesUISaved() = mmkv().contains("zones")
+    fun isStagesUISaved() = mmkv().contains("stages")
+    fun isItemsUISaved() = mmkv().contains("items")
+
+
+    private fun mmkv() = MMKV.mmkvWithID("view_data")
 }

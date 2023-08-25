@@ -4,16 +4,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import org.penguin_stats.android.R
+import org.penguin_stats.android.databinding.FragmentSecDonateBinding
 
 class DonatePage : Fragment() {
+    private lateinit var binding: FragmentSecDonateBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_sec_donate, container, false)
+    ): View {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sec_donate, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
     companion object {

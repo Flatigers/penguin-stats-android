@@ -16,10 +16,12 @@ object Repository {
     fun isStatsUISaved() = ViewDao.isStatsUISaved()
     fun isZonesUISaved() = ViewDao.isZonesUISaved()
     fun isStagesUISaved() = ViewDao.isStagesUISaved()
+    fun isItemsUISaved() = ViewDao.isItemsUISaved()
 
     fun readStatsUI() = ViewDao.readStatsUI()
     fun readZonesUI() = ViewDao.readZonesUI()
     fun readStagesUI() = ViewDao.readStagesUI()
+    fun readItemsUI() = ViewDao.readItemsUI()
 
     fun readNotice() = ResponseDao.readNotice()
     fun readStats() = ResponseDao.readStats()
@@ -68,6 +70,7 @@ object Repository {
                             it.type,
                             it.zoneName_i18n,
                             it.existence,
+                            it.background,
                             it.stages
                         )
                     )
@@ -82,7 +85,6 @@ object Repository {
     suspend fun saveStages() = coroutineScope {
         runBlocking {
             try {
-
                 val response = Network.getStages()
                 ResponseDao.saveStages(response)
                 val stageUI = mutableListOf<StageUI>()
@@ -99,6 +101,30 @@ object Repository {
                 ViewDao.saveStagesUI(stageUI)
             } catch (e: Exception) {
                 Log.e("E-repo: Stages", e.toString())
+            }
+        }
+    }
+
+    suspend fun saveItems() = coroutineScope {
+        runBlocking {
+            try {
+                val response = Network.getItems()
+                ResponseDao.saveItems(response)
+                val itemsUI = mutableListOf<ItemUI>()
+                response.forEach {
+                    itemsUI.add(
+                        ItemUI(
+                            it.itemId,
+                            it.name_i18n,
+                            it.existence,
+                            it.itemType,
+                            it.spriteCoord
+                        )
+                    )
+                }
+                ViewDao.saveItemsUI(itemsUI)
+            } catch (e: Exception) {
+                Log.e("E-repo: Items", e.toString())
             }
         }
     }

@@ -1,5 +1,6 @@
 package org.penguin_stats.android.network
 
+import org.penguin_stats.android.data.ResponseItems
 import org.penguin_stats.android.data.ResponseNotice
 import org.penguin_stats.android.data.ResponseStages
 import org.penguin_stats.android.data.ResponseTotalStats
@@ -21,4 +22,7 @@ interface NetworkService {
 
     @GET("PenguinStats/api/v2/stages")
     fun getStages(): Call<List<ResponseStages>>
+
+    @GET("PenguinStats/api/v2/items")
+    fun getItems(): Call<List<ResponseItems>>
 }

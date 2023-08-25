@@ -31,7 +31,7 @@
     <color name="theme_negative">@color/pile</color>
     <color name="theme_positive">@color/fb_blue</color>
     <color name="theme_statusBarDay">@color/white</color>
-    <color name="theme_statusBarNight">@color/black</color>
+    <color name="theme_statusBarNight">@color/purple20</color>
     <color name="primary">#448AFF</color>
     <color name="primaryVariant">#536DFE</color>
     <color name="onPrimary">#00E676</color>

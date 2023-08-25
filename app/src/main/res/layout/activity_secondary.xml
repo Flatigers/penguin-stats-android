@@ -17,7 +17,6 @@
             android:id="@+id/sec_bar"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:background="@color/theme_statusBarDay"
             app:title=" "
             app:titleTextAppearance="@style/title_text"
             app:titleCentered="true" />

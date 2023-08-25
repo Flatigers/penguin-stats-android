@@ -3,11 +3,7 @@
 
     <style name="title_text">
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/pile</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="tip_text">
-        <item name="android:textColor">@color/pile</item>
-    </style>
 </resources>

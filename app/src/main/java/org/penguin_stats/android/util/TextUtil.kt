@@ -21,7 +21,7 @@ fun inputStreamToStr(input: InputStream): String {
 
     var line: String? = bufferedReader.readLine()
     while (line != null) {
-        stringBuilder.append(line)
+        stringBuilder.append(line).append("\n")
         line = bufferedReader.readLine()
     }
 

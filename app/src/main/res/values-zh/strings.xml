@@ -52,4 +52,7 @@
     <string name="item_chip">芯片</string>
     <string name="item_furniture">家具</string>
     <string name="item_activity">活动道具</string>
+    <string name="donate_text_a">" 用户量激增，服务器月费上涨，企鹅数据的运营陷入了危机。站长红白为了保护喜爱的企鹅数据而决定…"</string>
+    <string name="donate_text_b">随着访问量的增加，目前的小水管服务器已经有些不堪重负了。如果各位刀客塔能捐助一些 服务器费用 ，我们将不胜感激！</string>
+    <string name="item_recruit">公招标签</string>
 </resources>

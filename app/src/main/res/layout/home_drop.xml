@@ -9,8 +9,6 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white_p"
-        app:strokeColor="@color/blue10"
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp"
         style="@style/Widget.Material3.CardView.Elevated">
@@ -52,8 +50,7 @@
 
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    app:dividerColor="@color/blue10" />
+                    android:layout_height="match_parent" />
 
                 <TextView
                     android:id="@+id/home_drop_item"

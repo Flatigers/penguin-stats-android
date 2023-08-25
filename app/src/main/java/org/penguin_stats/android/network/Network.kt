@@ -13,13 +13,14 @@ object Network {
     private val penguinService = ServiceCreator.create(NetworkService::class.java)
     private val apolloClient = ServiceCreator.createApollo()
 
-    suspend fun getZones() = penguinService.getZones().await()
-    suspend fun getStages() = penguinService.getStages().await()
     suspend fun getTotalStats() = penguinService.getTotalStats(
         AppConfig.getServer()
     ).await()
 
     suspend fun getNotice() = penguinService.getNotice().await()
+    suspend fun getZones() = penguinService.getZones().await()
+    suspend fun getStages() = penguinService.getStages().await()
+    suspend fun getItems() = penguinService.getItems().await()
 
     suspend fun getRogueTest() = apolloClient.query(TestQuery()).execute()
 
