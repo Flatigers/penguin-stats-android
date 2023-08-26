@@ -63,6 +63,7 @@ dependencies {
     implementation("com.apollographql.apollo3:apollo-runtime:4.0.0-alpha.3")
     implementation("io.noties.markwon:core:4.6.2")
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("jp.wasabeef:glide-transformations:4.3.0")
 
     testImplementation("junit:junit:4.13.2")
 }

@@ -80,7 +80,10 @@ class SecondaryActivity : BaseCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            android.R.id.home -> this.finish()
+            android.R.id.home -> {
+                this.finish()
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }

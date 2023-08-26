@@ -19,6 +19,7 @@
             android:id="@+id/bar_home"
             android:layout_width="match_parent"
             android:layout_height="52dp"
+            android:background="?attr/colorPrimaryVariant"
             app:title="@string/nav_home"
             app:titleTextAppearance="@style/title_text"
             app:titleCentered="true" />

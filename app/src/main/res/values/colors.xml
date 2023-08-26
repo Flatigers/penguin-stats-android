@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFBFA</color>
+    <color name="black_p">#2F2F2F</color>
+    <color name="white_f">#FFFBFA</color>
     <color name="white_p">#FFFFFFFF</color>
     <color name="white90">#E6FFFFFF</color>
     <color name="pile">#5F5F5F</color>
@@ -18,6 +19,7 @@
     <color name="pink10">#0DB388FF</color>
     <color name="green20">#33CCFF90</color>
     <color name="green40">#66CCFF90</color>
+    <color name="green">#00E676</color>
     <color name="blue20">#330091EA</color>
     <color name="blue10">#1A0091EA</color>
     <color name="blue5">#0D0091EA</color>
@@ -30,7 +32,7 @@
     <!--Theme Color-->
     <color name="theme_negative">@color/pile</color>
     <color name="theme_positive">@color/fb_blue</color>
-    <color name="theme_statusBarDay">@color/white</color>
+    <color name="theme_statusBarDay">@color/white_f</color>
     <color name="theme_statusBarNight">@color/purple20</color>
     <color name="primary">#448AFF</color>
     <color name="primaryVariant">#536DFE</color>

@@ -19,6 +19,7 @@
             android:id="@+id/bar_tool"
             android:layout_width="match_parent"
             android:layout_height="52dp"
+            android:background="?attr/colorPrimaryVariant"
             app:title="@string/nav_tool"
             app:titleTextAppearance="@style/title_text"
             app:titleCentered="true" />

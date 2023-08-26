@@ -1,23 +1,26 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Penguinstatsandroid" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- Primary brand color. -->
-        <!--        <item name="colorPrimary">@color/primary</item>-->
-        <!--        <item name="colorPrimaryVariant">@color/primaryVariant</item>-->
-        <!--        <item name="colorOnPrimary">@color/onPrimary</item>-->
-        <!-- Secondary brand color. -->
-        <!--        <item name="colorSecondary">@color/secondary</item>-->
-        <!--        <item name="colorSecondaryVariant">@color/secondaryVariant</item>-->
-        <!--        <item name="colorOnSecondary">@color/onSecondary</item>-->
-        <!--        <item name="colorAccent">@color/accent</item>-->
-        <!-- Status bar color. -->
-        <!--        <item name="android:statusBarColor">@color/theme_statusBarDay</item>-->
-        <!--        <item name="android:navigationBarColor">@color/theme_statusBarDay</item>-->
-        <!--        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>`-->
-        <!--        <item name="android:windowLightStatusBar">true</item>-->
+        <!-- Primary&Secondary brand color. -->
+        <item name="colorPrimary">@color/white_f</item>
+        <item name="colorPrimaryVariant">@color/white_f</item>
+        <item name="colorOnPrimary">@color/green</item>
+        <item name="colorAccent">@color/fb_blue</item>
+        <item name="colorSurface">?attr/colorPrimary</item>
+        <item name="colorSurfaceContainer">@color/white_f</item>
+        <item name="colorSurfaceContainerLow">@color/white_f</item>
+        <!-- Status&Navigation bar -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowAnimationStyle">@style/fluentAnim</item>
     </style>
 
     <style name="Theme.Penguinstatsandroid" parent="Base.Theme.Penguinstatsandroid" />
+
+    <style name="DetailedActivityTheme" parent="Theme.Penguinstatsandroid">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
 </resources>

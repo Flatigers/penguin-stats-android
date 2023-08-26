@@ -37,7 +37,7 @@ class StageZonesAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val zone = zones[position]
-        val uri = "https://penguin.upyun.galvincdn.com" + zone.background
+        val uri = "https://penguin.upyun.galvincdn.com${zone.background}"
         Glide.with(context)
             .load(uri)
             .placeholder(R.drawable.defaults)
@@ -68,7 +68,11 @@ class StageZonesAdapter(
                 isCheckable = true
                 isCheckedIconVisible = false
                 setOnClickListener {
-                    DetailedActivity.start(context, type, find?.stageId ?: "null find")
+                    DetailedActivity.start(
+                        context, type,
+                        find?.stageId ?: "null find",
+                        "https://penguin.upyun.galvincdn.com${zone.background}"
+                    )
                     group.clearCheck()
                 }
                 group.addView(chip)
@@ -77,7 +81,6 @@ class StageZonesAdapter(
 
         MaterialAlertDialogBuilder(context)
             .setCancelable(true)
-            .setNegativeButton("cancel") { _, _ -> }
             .setView(view)
             .setTitle(codeFromI18N(zone.zoneNameI18n, zone.existence))
             .show()

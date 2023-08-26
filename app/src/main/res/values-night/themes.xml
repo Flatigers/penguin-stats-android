@@ -1,10 +1,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Penguinstatsandroid" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/theme_statusBarNight</item>
+        <!-- Primary&Secondary brand color. -->
+        <item name="colorPrimary">@color/black_p</item>
+        <item name="colorPrimaryVariant">@color/black_p</item>
+        <item name="colorOnPrimary">@color/green</item>
+        <item name="colorAccent">@color/fb_blue</item>
+        <item name="colorSurface">?attr/colorPrimary</item>
+        <item name="colorSurfaceContainer">@color/white_p</item>
+        <item name="colorSurfaceContainerLow">@color/white_p</item>
+        <!-- Status&Navigation bar -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowAnimationStyle">@style/fluentAnim</item>
     </style>
