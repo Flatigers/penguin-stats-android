@@ -43,19 +43,27 @@ class StagePage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // init UI data to be showed
         if (Repository.isZonesUISaved() && Repository.isStagesUISaved()) {
             val zones = Repository.readZonesUI()
-            viewModel.zones.set(zones)
-            viewModel.filteredZones.set(zones)
-            viewModel.stages.set(Repository.readStagesUI())
+            val stages = Repository.readStagesUI()
+            viewModel.setZones(zones)
+            viewModel.setFilteredZones(zones)
+            viewModel.setStages(stages)
+            setAdapter()
         }
 
+        // set adapter for SwipeRefreshLayout
         binding.stageRefresher.run {
             setOnRefreshListener {
                 MainScope().launch(Dispatchers.IO) {
                     Repository.saveZones()
                     Repository.saveStages()
-                    viewModel.zones.set(Repository.readZonesUI())
+                    val zones = Repository.readZonesUI()
+                    val stages = Repository.readStagesUI()
+                    viewModel.setZones(zones)
+                    viewModel.setFilteredZones(zones)
+                    viewModel.setStages(stages)
                     withContext(Dispatchers.Main) {
                         isRefreshing = false
                         binding.stageChipGroup.check(R.id.stage_chip_all)
@@ -65,9 +73,11 @@ class StagePage : Fragment() {
             }
         }
 
+        // set check-adapter for [ChipGroup]
+        // change data by filter [it.type]
         binding.stageChipGroup.setOnCheckedStateChangeListener { group, _ ->
-            val zones = viewModel.zones.get() ?: listOf()
-            viewModel.filteredZones.set(zones.filter {
+            val zones = viewModel.getZones()
+            viewModel.setFilteredZones(zones.filter {
                 filterI18NExistence(it.existence) && when (group.checkedChipId) {
                     R.id.stage_chip_all -> true
                     R.id.stage_chip_e_open -> it.type == "ACTIVITY" && filterI18NTime(it.existence)
@@ -75,7 +85,7 @@ class StagePage : Fragment() {
                     R.id.stage_chip_ss -> it.type == "ACTIVITY_PERMANENT"
                     R.id.stage_chip_e_close -> it.type == "ACTIVITY" && !filterI18NTime(it.existence)
                     R.id.stage_chip_supply -> it.type == "WEEKLY"
-                    R.id.stage_chip_recurit -> it.type == "RECRUIT"
+                    R.id.stage_chip_recruit -> it.type == "RECRUIT"
                     R.id.stage_chip_gachabox -> it.type == "GACHABOX"
                     else -> false
                 }
@@ -85,23 +95,25 @@ class StagePage : Fragment() {
 
         val layoutManager = GridLayoutManager(requireActivity(), 2)
         binding.stageRecycler.layoutManager = layoutManager
-        setAdapter()
-
-
         if (type == REPORT) typeReportFunc()
     }
 
+    // function to init a new Adapter of [StageZonesAdapter]
+    // with newed data for RecyclerView
     private fun setAdapter() {
-        viewModel.adapter = StageZonesAdapter(
-            requireActivity(), type,
-            viewModel.filteredZones.get() ?: listOf(), viewModel.stages.get() ?: listOf()
+        viewModel.setAdapter(
+            StageZonesAdapter(
+                requireActivity(), type, viewModel.getFilteredZones(), viewModel.getStages()
+            )
         )
-        binding.stageRecycler.adapter = viewModel.adapter
+        binding.stageRecycler.adapter = viewModel.getAdapter()
     }
 
+    // fun to remove [Chip Close] & [Chip Recruit]
+    // called when this.REPORT
     private fun typeReportFunc() {
         binding.stageChipEClose.visibility = View.GONE
-        binding.stageChipRecurit.visibility = View.GONE
+        binding.stageChipRecruit.visibility = View.GONE
     }
 
 

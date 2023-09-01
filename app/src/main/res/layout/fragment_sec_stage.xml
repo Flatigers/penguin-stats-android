@@ -78,7 +78,7 @@
                     app:checkedIconVisible="false" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/stage_chip_recurit"
+                    android:id="@+id/stage_chip_recruit"
                     android:text="@string/zone_recruit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

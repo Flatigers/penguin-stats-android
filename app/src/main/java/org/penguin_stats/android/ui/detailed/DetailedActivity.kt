@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.fragment.app.commit
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import jp.wasabeef.glide.transformations.BlurTransformation
@@ -15,6 +16,7 @@ class DetailedActivity : BaseCompatActivity() {
     private var pType = QUERY
     private var info = ""
     private var barDrawable = ""
+    private var mTitle = "$info : $pType"
     private lateinit var binding: ActivityDetailedBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,52 +29,29 @@ class DetailedActivity : BaseCompatActivity() {
             info = getStringExtra("info")!!
             barDrawable = getStringExtra("drawable")!!
         }
-        when (pType) {
-            QUERY -> {
-                viewQuery()
-            }
 
-            REPORT -> {
-                viewReport()
-            }
-
-            ITEM -> {
-                viewItem()
-            }
-
-            RECO -> {
-                viewReco()
-            }
+        val fragment = when (pType) {
+            QUERY -> DetailStageFragment.new()
+            REPORT -> DetailReportFragment.new()
+            ITEM -> DetailItemFragment.new()
+            else -> DetailStageFragment.new()
+        }
+        supportFragmentManager.commit {
+            this.replace(R.id.detailed_frame, fragment)
         }
 
         setSupportActionBar(binding.detailedToolBar)
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
-            title = "$info : $pType"
+            title = mTitle
         }
-        binding.detailedCollapsingBar.title = "$info : $pType"
+        binding.detailedCollapsingBar.title = mTitle
         binding.detailedBarImage
         Glide.with(this)
             .load(barDrawable)
             .placeholder(R.drawable.defaults)
-            .apply(RequestOptions.bitmapTransform(BlurTransformation(25, 3)))
+            .apply(RequestOptions.bitmapTransform(BlurTransformation(15, 3)))
             .into(binding.detailedBarImage)
-    }
-
-    private fun viewQuery() {
-
-    }
-
-    private fun viewReport() {
-
-    }
-
-    private fun viewItem() {
-
-    }
-
-    private fun viewReco() {
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -89,7 +68,6 @@ class DetailedActivity : BaseCompatActivity() {
         const val QUERY = 0
         const val REPORT = 1
         const val ITEM = 2
-        const val RECO = 4
 
         @JvmStatic
         fun start(

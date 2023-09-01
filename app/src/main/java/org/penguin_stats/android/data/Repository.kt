@@ -3,6 +3,7 @@ package org.penguin_stats.android.data
 import android.util.Log
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
+import org.penguin_stats.android.app.BaseApplication
 import org.penguin_stats.android.network.Network
 import org.penguin_stats.android.util.genSplitNum
 
@@ -68,7 +69,7 @@ object Repository {
                         ZoneUI(
                             it.zoneId,
                             it.type,
-                            it.zoneName_i18n,
+                            it.zoneNameI18n,
                             it.existence,
                             it.background,
                             it.stages
@@ -128,5 +129,8 @@ object Repository {
             }
         }
     }
+
+    private fun dataBase() = PenguinDataBase.getDataBase(BaseApplication.context)
+    private fun responseZoneDao() = dataBase().responseZoneDao()
 
 }

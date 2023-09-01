@@ -38,9 +38,7 @@ class SecondaryActivity : BaseCompatActivity() {
 
             R.string.home_report_stage -> StagePage.new(StagePage.REPORT)
 
-            R.string.home_report_reco -> {
-                SecWebViewerPage.new("https://penguin-stats." + AppConfig.getDomain())
-            }
+            R.string.home_report_reco -> RecoPage.new()
 
             R.string.about_dev -> DevPage.new()
             R.string.about_donate -> DonatePage.new()

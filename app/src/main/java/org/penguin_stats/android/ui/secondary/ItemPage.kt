@@ -46,29 +46,34 @@ class ItemPage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // init UI data to be showed
         if (Repository.isItemsUISaved()) {
             val items = Repository.readItemsUI()
-            viewModel.items.set(items)
-            viewModel.filteredItems.set(items)
+            viewModel.setItems(items)
+            viewModel.setFilteredItems(items)
+            setItems()
         }
 
+        // set adapter for SwipeRefreshLayout
         binding.itemRefresher.run {
             setOnRefreshListener {
                 MainScope().launch(Dispatchers.IO) {
                     Repository.saveItems()
-                    viewModel.items.set(Repository.readItemsUI())
+                    viewModel.setItems(Repository.readItemsUI())
                     withContext(Dispatchers.Main) {
                         isRefreshing = false
                         binding.itemChipGroup.check(R.id.item_chip_all)
-                        setChips()
+                        setItems()
                     }
                 }
             }
         }
 
+        // set check-adapter for [ChipGroup]
+        // change data by filter [it.itemType]
         binding.itemChipGroup.setOnCheckedStateChangeListener { group, _ ->
-            val items = viewModel.items.get() ?: listOf()
-            viewModel.filteredItems.set(items.filter {
+            val items = viewModel.getItems()
+            viewModel.setFilteredItems(items.filter {
                 when (group.checkedChipId) {
                     R.id.item_chip_all -> true
                     R.id.item_chip_material -> it.itemType == "MATERIAL"
@@ -80,15 +85,16 @@ class ItemPage : Fragment() {
                     else -> true
                 }
             })
-            setChips()
+            setItems()
         }
 
-        setChips()
     }
 
-    private fun setChips() {
-        val items = viewModel.filteredItems.get() ?: listOf()
+    // function to add items[TextView] to show
+    private fun setItems() {
+        val items = viewModel.getFilteredItems()
         binding.itemItemGroup.run {
+            // Remove views added before
             removeAllViews()
             for (i in items) {
                 val chip = TextView(requireActivity())
@@ -96,8 +102,10 @@ class ItemPage : Fragment() {
                     i.name_i18n,
                     i.existence
                 )
+                // make drawable
                 val drawable = itemScaledImg(requireActivity(), i.spriteCoord, img)
                 drawable.setBounds(0, 0, 100, 100)
+                // remove no-name items
                 if (name == "") continue
                 chip.run {
                     text = name
@@ -106,6 +114,7 @@ class ItemPage : Fragment() {
                     setPadding(12)
                     setCompoundDrawables(drawable, null, null, null)
                     compoundDrawablePadding = 8
+                    //intent to [DetailedActivity]
                     setOnClickListener {
                         DetailedActivity.start(
                             requireActivity(),
