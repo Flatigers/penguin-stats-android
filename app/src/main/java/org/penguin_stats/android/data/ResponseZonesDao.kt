@@ -8,7 +8,7 @@ import androidx.room.Transaction
 import androidx.room.Update
 
 @Dao
-interface ResponseZoneDao {
+interface ResponseZonesDao {
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -10,15 +10,15 @@ object Repository {
 
     fun isNoticeSaved() = ResponseDao.isNoticeSaved()
     fun isStatsUISaved() = ViewDao.isStatsUISaved()
-    fun isItemsUISaved() = ViewDao.isItemsUISaved()
+
 
     fun readNotice() = ResponseDao.readNotice()
     fun readStatsUI() = ViewDao.readStatsUI()
-    fun readAllZones() = responseZoneDao().loadAllZones()
-    fun readZonesByType(type: String) = responseZoneDao().loadZonesByType(type)
-    fun readAllStages() = responseStageDao().loadAllStages()
-    fun readStagesById(id: String) = responseStageDao().loadStageByStageId(id)
-    fun readItemsUI() = ViewDao.readItemsUI()
+    fun readAllZones() = responseZonesDao().loadAllZones()
+    fun readZonesByType(type: String) = responseZonesDao().loadZonesByType(type)
+    fun readAllStages() = responseStagesDao().loadAllStages()
+    fun readStagesById(id: String) = responseStagesDao().loadStageByStageId(id)
+    fun readAllItems() = responseItemsDao().loadAllItems()
 
 
     suspend fun saveNotice() = coroutineScope {
@@ -53,7 +53,7 @@ object Repository {
         runBlocking {
             try {
                 val response = Network.getZones()
-                responseZoneDao().insertAllZones(response)
+                responseZonesDao().insertAllZones(response)
             } catch (e: Exception) {
                 Log.e("E-repo: Zones", e.toString())
             }
@@ -64,7 +64,7 @@ object Repository {
         runBlocking {
             try {
                 val response = Network.getStages()
-                responseStageDao().insertAllStages(response)
+                responseStagesDao().insertAllStages(response)
             } catch (e: Exception) {
                 Log.e("E-repo: Stages", e.toString())
             }
@@ -76,27 +76,16 @@ object Repository {
             try {
                 val response = Network.getItems()
                 ResponseDao.saveItems(response)
-                val itemsUI = mutableListOf<ItemUI>()
-                response.forEach {
-                    itemsUI.add(
-                        ItemUI(
-                            it.itemId,
-                            it.nameI18n,
-                            it.existence,
-                            it.itemType,
-                            it.spriteCoord
-                        )
-                    )
-                }
-                ViewDao.saveItemsUI(itemsUI)
+                responseItemsDao().insertAllItems(response)
             } catch (e: Exception) {
                 Log.e("E-repo: Items", e.toString())
             }
         }
     }
 
-    private fun dataBase() = PenguinDataBase.getDataBase()
-    private fun responseZoneDao() = dataBase().responseZoneDao()
-    private fun responseStageDao() = dataBase().responseStageDao()
 
+    private fun dataBase() = PenguinDataBase.getDataBase()
+    private fun responseZonesDao() = dataBase().responseZoneDao()
+    private fun responseStagesDao() = dataBase().responseStageDao()
+    private fun responseItemsDao() = dataBase().responseItemsDao()
 }

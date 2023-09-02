@@ -8,25 +8,21 @@ import androidx.room.Transaction
 import androidx.room.Update
 
 @Dao
-interface ResponseStageDao {
+interface ResponseItemsDao {
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertStage(stage: ResponseStages): Long
+    fun insertItem(item: ResponseItems): Long
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAllStages(stages: List<ResponseStages>)
+    fun insertAllItems(items: List<ResponseItems>)
 
     @Transaction
     @Update
-    fun updateStage(newStage: ResponseStages)
+    fun updateItem(newItem: ResponseItems)
 
     @Transaction
-    @Query("select * from ResponseStages")
-    fun loadAllStages(): List<ResponseStages>
-
-    @Transaction
-    @Query("select * from ResponseStages where stageId=:id")
-    fun loadStageByStageId(id: String): ResponseStages
+    @Query("select * from ResponseItems")
+    fun loadAllItems(): List<ResponseItems>
 }

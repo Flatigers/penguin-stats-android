@@ -48,23 +48,22 @@ class ItemPage : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // init UI data to be showed
-        if (Repository.isItemsUISaved()) {
-            MainScope().launch(Dispatchers.IO) {
-                val items = Repository.readItemsUI()
-                viewModel.setItems(items)
-                viewModel.setFilteredItems(items)
-                withContext(Dispatchers.Main) {
-                    setItems()
-                }
+        MainScope().launch(Dispatchers.IO) {
+            val items = Repository.readAllItems()
+            viewModel.setItems(items)
+            viewModel.setFilteredItems(items)
+            withContext(Dispatchers.Main) {
+                setItems()
             }
         }
+
 
         // set adapter for SwipeRefreshLayout
         binding.itemRefresher.run {
             setOnRefreshListener {
                 MainScope().launch(Dispatchers.IO) {
                     Repository.saveItems()
-                    val items = Repository.readItemsUI()
+                    val items = Repository.readAllItems()
                     viewModel.setItems(items)
                     viewModel.setFilteredItems(items)
                     withContext(Dispatchers.Main) {
@@ -79,21 +78,23 @@ class ItemPage : Fragment() {
         // set check-adapter for [ChipGroup]
         // change data by filter [it.itemType]
         binding.itemChipGroup.setOnCheckedStateChangeListener { group, _ ->
-            val items = viewModel.getItems()
-            viewModel.setFilteredItems(items.filter {
-                when (group.checkedChipId) {
-                    R.id.item_chip_all -> true
-                    R.id.item_chip_material -> it.itemType == "MATERIAL"
-                    R.id.item_chip_card -> it.itemType == "CARD_EXP"
-                    R.id.item_chip_chip -> it.itemType == "CHIP"
-                    R.id.item_chip_furniture -> it.itemType == "FURN"
-                    R.id.item_chip_activity -> it.itemType == "ACTIVITY_ITEM"
-                    R.id.item_chip_recruit -> it.itemType == "RECRUIT_TAG"
-                    else -> true
+            MainScope().launch(Dispatchers.Default) {
+                val items = viewModel.getItems()
+                viewModel.setFilteredItems(items.filter {
+                    when (group.checkedChipId) {
+                        R.id.item_chip_all -> true
+                        R.id.item_chip_material -> it.itemType == "MATERIAL"
+                        R.id.item_chip_card -> it.itemType == "CARD_EXP"
+                        R.id.item_chip_chip -> it.itemType == "CHIP"
+                        R.id.item_chip_furniture -> it.itemType == "FURN"
+                        R.id.item_chip_activity -> it.itemType == "ACTIVITY_ITEM"
+                        R.id.item_chip_recruit -> it.itemType == "RECRUIT_TAG"
+                        else -> true
+                    }
+                })
+                MainScope().launch(Dispatchers.IO) {
+                    setItems()
                 }
-            })
-            MainScope().launch(Dispatchers.IO) {
-                setItems()
             }
         }
 
@@ -103,21 +104,26 @@ class ItemPage : Fragment() {
     private suspend fun setItems() = coroutineScope {
         val items = viewModel.getFilteredItems()
         binding.itemItemGroup.run {
+
             // Remove views added before
             withContext(Dispatchers.Main) {
                 removeAllViews()
             }
+
             for (i in items) {
                 val chip = TextView(requireActivity())
                 val name = codeFromI18N(
-                    i.name_i18n,
+                    i.nameI18n,
                     i.existence
                 )
+
                 // make drawable
                 val drawable = itemScaledImg(requireActivity(), i.spriteCoord, img)
                 drawable.setBounds(0, 0, 100, 100)
+
                 // remove no-name items
                 if (name == "") continue
+
                 chip.run {
                     text = name
                     textSize = 15.5F
@@ -125,6 +131,7 @@ class ItemPage : Fragment() {
                     setPadding(12)
                     setCompoundDrawables(drawable, null, null, null)
                     compoundDrawablePadding = 8
+
                     //intent to [DetailedActivity]
                     setOnClickListener {
                         DetailedActivity.start(
