@@ -9,7 +9,7 @@ import androidx.room.Relation
  */
 @Entity
 data class CodeI18N(
-    val en: String, val ja: String, val ko: String, val zh: String
+    val en: String, val ja: String, val ko: String, val zh: String,
 )
 
 data class CodeI18NAndResponseZones(
@@ -18,15 +18,23 @@ data class CodeI18NAndResponseZones(
         parentColumn = "zoneName_i18n",
         entityColumn = "codeI18NId"
     )
-    val codeI18N: CodeI18N
+    val codeI18N: CodeI18N,
 )
+//data class CodeI18NAndResponseStages(
+//    @Embedded val stages: ResponseStages,
+//    @Relation(
+//        parentColumn = "code_i18n",
+//        entityColumn = "codeI18NId"
+//    )
+//    val codeI18N: CodeI18N
+//)
 
 @Entity
 data class Existence(
     @Embedded(prefix = "cn_") val CN: ExistenceValue,
     @Embedded(prefix = "jp_") val JP: ExistenceValue,
     @Embedded(prefix = "kr_") val KR: ExistenceValue,
-    @Embedded(prefix = "us_") val US: ExistenceValue
+    @Embedded(prefix = "us_") val US: ExistenceValue,
 ) {
     data class ExistenceValue(val exist: Boolean, val openTime: Long, val closeTime: Long)
 }
@@ -37,8 +45,16 @@ data class ExistenceAndResponseZones(
         parentColumn = "existence",
         entityColumn = "existenceId"
     )
-    val codeI18N: Existence
+    val codeI18N: Existence,
 )
+//data class ExistenceAndResponseStages(
+//    @Embedded val stage: ResponseStages,
+//    @Relation(
+//        parentColumn = "existence",
+//        entityColumn = "existenceId"
+//    )
+//    val codeI18N: Existence
+//)
 
 
 /*

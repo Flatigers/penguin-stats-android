@@ -2,6 +2,7 @@ package org.penguin_stats.android.data
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
@@ -10,12 +11,20 @@ import androidx.room.Update
 interface ResponseZoneDao {
 
     @Transaction
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertZone(zone: ResponseZones): Long
+
+    @Transaction
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAllZones(zone: List<ResponseZones>)
 
     @Transaction
     @Update
     fun updateZone(newZone: ResponseZones)
+
+    @Transaction
+    @Update
+    fun updateAllZones(newZones: List<ResponseZones>)
 
     @Transaction
     @Query("select * from ResponseZones")

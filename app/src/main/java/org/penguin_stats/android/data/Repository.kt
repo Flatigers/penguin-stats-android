@@ -3,32 +3,23 @@ package org.penguin_stats.android.data
 import android.util.Log
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
-import org.penguin_stats.android.app.BaseApplication
 import org.penguin_stats.android.network.Network
 import org.penguin_stats.android.util.genSplitNum
 
 object Repository {
 
     fun isNoticeSaved() = ResponseDao.isNoticeSaved()
-    fun isStatsSaved() = ResponseDao.isStatsSaved()
-    fun isZonesSaved() = ResponseDao.isZonesSaved()
-    fun isStagesSaved() = ResponseDao.isStagesSaved()
-    fun isItemsSaved() = ResponseDao.isItemsSaved()
     fun isStatsUISaved() = ViewDao.isStatsUISaved()
-    fun isZonesUISaved() = ViewDao.isZonesUISaved()
-    fun isStagesUISaved() = ViewDao.isStagesUISaved()
     fun isItemsUISaved() = ViewDao.isItemsUISaved()
 
+    fun readNotice() = ResponseDao.readNotice()
     fun readStatsUI() = ViewDao.readStatsUI()
-    fun readZonesUI() = ViewDao.readZonesUI()
-    fun readStagesUI() = ViewDao.readStagesUI()
+    fun readAllZones() = responseZoneDao().loadAllZones()
+    fun readZonesByType(type: String) = responseZoneDao().loadZonesByType(type)
+    fun readAllStages() = responseStageDao().loadAllStages()
+    fun readStagesById(id: String) = responseStageDao().loadStageByStageId(id)
     fun readItemsUI() = ViewDao.readItemsUI()
 
-    fun readNotice() = ResponseDao.readNotice()
-    fun readStats() = ResponseDao.readStats()
-    fun readZones() = ResponseDao.readZones()
-    fun readStages() = ResponseDao.readStages()
-    fun readItems() = ResponseDao.readItems()
 
     suspend fun saveNotice() = coroutineScope {
         runBlocking {
@@ -62,21 +53,7 @@ object Repository {
         runBlocking {
             try {
                 val response = Network.getZones()
-                ResponseDao.saveZones(response)
-                val zoneUI = mutableListOf<ZoneUI>()
-                response.forEach {
-                    zoneUI.add(
-                        ZoneUI(
-                            it.zoneId,
-                            it.type,
-                            it.zoneNameI18n,
-                            it.existence,
-                            it.background,
-                            it.stages
-                        )
-                    )
-                }
-                ViewDao.saveZonesUI(zoneUI)
+                responseZoneDao().insertAllZones(response)
             } catch (e: Exception) {
                 Log.e("E-repo: Zones", e.toString())
             }
@@ -87,19 +64,7 @@ object Repository {
         runBlocking {
             try {
                 val response = Network.getStages()
-                ResponseDao.saveStages(response)
-                val stageUI = mutableListOf<StageUI>()
-                response.forEach {
-                    stageUI.add(
-                        StageUI(
-                            it.stageId,
-                            it.zoneId,
-                            it.code_i18n,
-                            it.existence
-                        )
-                    )
-                }
-                ViewDao.saveStagesUI(stageUI)
+                responseStageDao().insertAllStages(response)
             } catch (e: Exception) {
                 Log.e("E-repo: Stages", e.toString())
             }
@@ -116,7 +81,7 @@ object Repository {
                     itemsUI.add(
                         ItemUI(
                             it.itemId,
-                            it.name_i18n,
+                            it.nameI18n,
                             it.existence,
                             it.itemType,
                             it.spriteCoord
@@ -130,7 +95,8 @@ object Repository {
         }
     }
 
-    private fun dataBase() = PenguinDataBase.getDataBase(BaseApplication.context)
+    private fun dataBase() = PenguinDataBase.getDataBase()
     private fun responseZoneDao() = dataBase().responseZoneDao()
+    private fun responseStageDao() = dataBase().responseStageDao()
 
 }

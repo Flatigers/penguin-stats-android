@@ -44,13 +44,13 @@ class StagePage : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // init UI data to be showed
-        if (Repository.isZonesUISaved() && Repository.isStagesUISaved()) {
-            val zones = Repository.readZonesUI()
-            val stages = Repository.readStagesUI()
+        MainScope().launch(Dispatchers.IO) {
+            val zones = Repository.readAllZones()
             viewModel.setZones(zones)
             viewModel.setFilteredZones(zones)
-            viewModel.setStages(stages)
-            setAdapter()
+            withContext(Dispatchers.Main) {
+                setAdapter()
+            }
         }
 
         // set adapter for SwipeRefreshLayout
@@ -59,11 +59,9 @@ class StagePage : Fragment() {
                 MainScope().launch(Dispatchers.IO) {
                     Repository.saveZones()
                     Repository.saveStages()
-                    val zones = Repository.readZonesUI()
-                    val stages = Repository.readStagesUI()
+                    val zones = Repository.readAllZones()
                     viewModel.setZones(zones)
                     viewModel.setFilteredZones(zones)
-                    viewModel.setStages(stages)
                     withContext(Dispatchers.Main) {
                         isRefreshing = false
                         binding.stageChipGroup.check(R.id.stage_chip_all)
@@ -76,21 +74,26 @@ class StagePage : Fragment() {
         // set check-adapter for [ChipGroup]
         // change data by filter [it.type]
         binding.stageChipGroup.setOnCheckedStateChangeListener { group, _ ->
-            val zones = viewModel.getZones()
-            viewModel.setFilteredZones(zones.filter {
-                filterI18NExistence(it.existence) && when (group.checkedChipId) {
-                    R.id.stage_chip_all -> true
-                    R.id.stage_chip_e_open -> it.type == "ACTIVITY" && filterI18NTime(it.existence)
-                    R.id.stage_chip_main -> it.type == "MAINLINE"
-                    R.id.stage_chip_ss -> it.type == "ACTIVITY_PERMANENT"
-                    R.id.stage_chip_e_close -> it.type == "ACTIVITY" && !filterI18NTime(it.existence)
-                    R.id.stage_chip_supply -> it.type == "WEEKLY"
-                    R.id.stage_chip_recruit -> it.type == "RECRUIT"
-                    R.id.stage_chip_gachabox -> it.type == "GACHABOX"
-                    else -> false
+            MainScope().launch(Dispatchers.IO) {
+                val zones = viewModel.getZones()
+                viewModel.setFilteredZones(
+                    zones.filter {
+                        filterI18NExistence(it.existence) && when (group.checkedChipId) {
+                            R.id.stage_chip_all -> true
+                            R.id.stage_chip_e_open -> it.type == "ACTIVITY" && filterI18NTime(it.existence)
+                            R.id.stage_chip_main -> it.type == "MAINLINE"
+                            R.id.stage_chip_ss -> it.type == "ACTIVITY_PERMANENT"
+                            R.id.stage_chip_e_close -> it.type == "ACTIVITY" && !filterI18NTime(it.existence)
+                            R.id.stage_chip_supply -> it.type == "WEEKLY"
+                            R.id.stage_chip_recruit -> it.type == "RECRUIT"
+                            R.id.stage_chip_gachabox -> it.type == "GACHABOX"
+                            else -> false
+                        }
+                    })
+                withContext(Dispatchers.Main) {
+                    setAdapter()
                 }
-            })
-            setAdapter()
+            }
         }
 
         val layoutManager = GridLayoutManager(requireActivity(), 2)
@@ -102,9 +105,7 @@ class StagePage : Fragment() {
     // with newed data for RecyclerView
     private fun setAdapter() {
         viewModel.setAdapter(
-            StageZonesAdapter(
-                requireActivity(), type, viewModel.getFilteredZones(), viewModel.getStages()
-            )
+            StageZonesAdapter(requireActivity(), type, viewModel.getFilteredZones())
         )
         binding.stageRecycler.adapter = viewModel.getAdapter()
     }

@@ -12,16 +12,21 @@ import com.google.android.material.card.MaterialCardView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.penguin_stats.android.R
-import org.penguin_stats.android.data.DefaultI18N
-import org.penguin_stats.android.data.StageUI
-import org.penguin_stats.android.data.ZoneUI
+import org.penguin_stats.android.data.Repository
+import org.penguin_stats.android.data.ResponseZones
 import org.penguin_stats.android.ui.detailed.DetailedActivity
 import org.penguin_stats.android.util.codeFromI18N
 
 class StageZonesAdapter(
-    val context: Context, val type: Int,
-    private val zones: List<ZoneUI>, private val stageList: List<StageUI>
+    val context: Context,
+    val type: Int,
+    private val zones: List<ResponseZones>,
 ) : RecyclerView.Adapter<StageZonesAdapter.ViewHolder>() {
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val zoneCard: MaterialCardView = view.findViewById(R.id.sec_stage_item_card)
@@ -44,23 +49,23 @@ class StageZonesAdapter(
             .into(holder.zoneImage)
         holder.zoneText.text = codeFromI18N(zone.zoneNameI18n, zone.existence)
         holder.zoneCard.setOnClickListener {
-            buildDialog(zone)
+            MainScope().launch(Dispatchers.Default) { buildDialog(zone) }
         }
     }
 
     override fun getItemCount() = zones.size
 
-    private fun buildDialog(zone: ZoneUI) {
+    private suspend fun buildDialog(zone: ResponseZones) = coroutineScope {
         val view = LayoutInflater.from(context)
             .inflate(R.layout.fragment_sec_stage_dialog, null)
         val group: ChipGroup = view.findViewById(R.id.stage_chip_group)
         val stages = zone.stages
         for (s in stages) {
             val chip = Chip(context)
-            val find = stageList.find { it.stageId == s }
+            val find = Repository.readStagesById(s)
             val name = codeFromI18N(
-                find?.code_i18n ?: DefaultI18N.defaultCodeI18N(),
-                find?.existence ?: DefaultI18N.defaultExistence()
+                find.codeI18n,
+                find.existence
             )
             if (name == "") continue
             chip.run {
@@ -70,7 +75,7 @@ class StageZonesAdapter(
                 setOnClickListener {
                     DetailedActivity.start(
                         context, type,
-                        find?.stageId ?: "null find",
+                        find.stageId,
                         "https://penguin.upyun.galvincdn.com${zone.background}"
                     )
                     group.clearCheck()
@@ -78,11 +83,12 @@ class StageZonesAdapter(
                 group.addView(chip)
             }
         }
-
-        MaterialAlertDialogBuilder(context)
-            .setCancelable(true)
-            .setView(view)
-            .setTitle(codeFromI18N(zone.zoneNameI18n, zone.existence))
-            .show()
+        withContext(Dispatchers.Main) {
+            MaterialAlertDialogBuilder(context)
+                .setCancelable(true)
+                .setView(view)
+                .setTitle(codeFromI18N(zone.zoneNameI18n, zone.existence))
+                .show()
+        }
     }
 }

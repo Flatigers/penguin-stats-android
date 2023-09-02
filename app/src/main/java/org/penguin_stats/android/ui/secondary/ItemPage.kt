@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.penguin_stats.android.R
@@ -48,10 +49,14 @@ class ItemPage : Fragment() {
 
         // init UI data to be showed
         if (Repository.isItemsUISaved()) {
-            val items = Repository.readItemsUI()
-            viewModel.setItems(items)
-            viewModel.setFilteredItems(items)
-            setItems()
+            MainScope().launch(Dispatchers.IO) {
+                val items = Repository.readItemsUI()
+                viewModel.setItems(items)
+                viewModel.setFilteredItems(items)
+                withContext(Dispatchers.Main) {
+                    setItems()
+                }
+            }
         }
 
         // set adapter for SwipeRefreshLayout
@@ -59,7 +64,9 @@ class ItemPage : Fragment() {
             setOnRefreshListener {
                 MainScope().launch(Dispatchers.IO) {
                     Repository.saveItems()
-                    viewModel.setItems(Repository.readItemsUI())
+                    val items = Repository.readItemsUI()
+                    viewModel.setItems(items)
+                    viewModel.setFilteredItems(items)
                     withContext(Dispatchers.Main) {
                         isRefreshing = false
                         binding.itemChipGroup.check(R.id.item_chip_all)
@@ -85,17 +92,21 @@ class ItemPage : Fragment() {
                     else -> true
                 }
             })
-            setItems()
+            MainScope().launch(Dispatchers.IO) {
+                setItems()
+            }
         }
 
     }
 
     // function to add items[TextView] to show
-    private fun setItems() {
+    private suspend fun setItems() = coroutineScope {
         val items = viewModel.getFilteredItems()
         binding.itemItemGroup.run {
             // Remove views added before
-            removeAllViews()
+            withContext(Dispatchers.Main) {
+                removeAllViews()
+            }
             for (i in items) {
                 val chip = TextView(requireActivity())
                 val name = codeFromI18N(
@@ -123,7 +134,9 @@ class ItemPage : Fragment() {
                         )
                     }
                 }
-                addView(chip)
+                withContext(Dispatchers.Main) {
+                    addView(chip)
+                }
             }
         }
     }
