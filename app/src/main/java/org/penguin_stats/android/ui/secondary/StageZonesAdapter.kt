@@ -62,7 +62,7 @@ class StageZonesAdapter(
         val stages = zone.stages
         for (s in stages) {
             val chip = Chip(context)
-            val find = Repository.readStagesById(s)
+            val find = Repository.readStageById(s)
             val name = codeFromI18N(
                 find.codeI18n,
                 find.existence

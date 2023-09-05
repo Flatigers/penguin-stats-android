@@ -3,6 +3,9 @@
 
     <string name="empty_blank" translatable="false"> </string>
     <string name="todo" translatable="false">TODO</string>
+    <string name="minutes">Min</string>
+    <string name="seconds">Sec</string>
+    <string name="till_now">Till Now</string>
 
     <!-- Settings -->
     <string name="s_is_night">Enable night mode</string>
@@ -67,6 +70,15 @@
     <string name="item_furniture">Furniture</string>
     <string name="item_activity">Activity Item</string>
     <string name="item_recruit">Recruit Tag</string>
+
+    <!--Page Detailed-->
+    <string name="detailed_sanity_consumed">Sanity consumed</string>
+    <string name="detailed_clear_time">Min clear time</string>
+    <string name="detailed_pattern_name">Drop pattern</string>
+    <string name="detailed_pattern_interval">Statistical interval</string>
+    <string name="detailed_pattern_sample">Sample count</string>
+    <string name="detailed_link_prts">Wiki</string>
+    <string name="detailed_link_map">Map</string>
 
     <!--Page Donate-->
     <string name="donate_text_a">Increasing number of users and server fees are putting Penguin Statistics into crisis. In order to protect our beloved Penguin Statistics, the webmaster decided to...</string>

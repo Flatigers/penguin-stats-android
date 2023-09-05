@@ -1,14 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.detailed.DetailStageFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <variable
+            name="vm"
+            type="org.penguin_stats.android.ui.detailed.DetailedStageViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".ui.detailed.DetailStageFragment">
 
-</FrameLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="3dp"
+            style="@style/Widget.Material3.CardView.Elevated">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include
+                    layout="@layout/fragment_detail_stage_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="82dp"
+                    android:layout_margin="8dp"
+                    app:vm="@{vm}" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    app:dividerInsetStart="24dp"
+                    app:dividerInsetEnd="24dp" />
+
+                <include
+                    android:id="@+id/detailed_stage_layout_chart"
+                    layout="@layout/fragment_detail_stage_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="142dp"
+                    android:layout_margin="8dp"
+                    app:vm="@{vm}" />
+
+                <TextView
+                    android:id="@+id/detailed_stage_info_arrow"
+                    android:text="@string/detailed_pattern_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxHeight="26dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="12dp"
+                    android:textAlignment="center"
+                    app:drawableStartCompat="@drawable/baseline_keyboard_double_arrow_down_24" />
+
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </LinearLayout>
+
+</layout>

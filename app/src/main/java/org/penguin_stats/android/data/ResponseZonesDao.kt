@@ -34,4 +34,8 @@ interface ResponseZonesDao {
     @Query("select * from ResponseZones where type=:type")
     fun loadZonesByType(type: String): List<ResponseZones>
 
+    @Transaction
+    @Query("select * from ResponseZones where zoneId=:id")
+    fun loadZoneById(id: String): ResponseZones
+
 }

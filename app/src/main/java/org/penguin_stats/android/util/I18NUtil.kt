@@ -4,6 +4,17 @@ import android.util.Log
 import org.penguin_stats.android.app.AppConfig
 import org.penguin_stats.android.data.CodeI18N
 import org.penguin_stats.android.data.Existence
+import java.util.Locale
+
+fun getLocale(): Locale {
+    return when (AppConfig.getServer()) {
+        "CN" -> Locale.CHINA
+        "US" -> Locale.US
+        "JP" -> Locale.JAPAN
+        "KR" -> Locale.KOREA
+        else -> Locale.CHINA
+    }
+}
 
 fun codeFromI18N(codeI18n: CodeI18N, existence: Existence) =
     when (AppConfig.getServer()) {

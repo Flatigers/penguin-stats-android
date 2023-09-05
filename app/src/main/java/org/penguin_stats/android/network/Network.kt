@@ -10,7 +10,7 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 object Network {
-    private val penguinService = ServiceCreator.create(NetworkService::class.java)
+    private val penguinService = ServiceCreator.create<NetworkService>()
     private val apolloClient = ServiceCreator.createApollo()
 
     suspend fun getTotalStats() = penguinService.getTotalStats(
@@ -21,6 +21,16 @@ object Network {
     suspend fun getZones() = penguinService.getZones().await()
     suspend fun getStages() = penguinService.getStages().await()
     suspend fun getItems() = penguinService.getItems().await()
+
+    suspend fun getPattern() = penguinService.getPattern().await()
+    suspend fun getMatrix() = penguinService.getMatrix().await()
+    suspend fun getPatternDetailed(
+        server: String, isPersonal: Boolean, showAllPatterns: Boolean,
+    ) = penguinService.getPatternDetailed(server, isPersonal, showAllPatterns)
+
+    suspend fun getMatrixDetailed(
+        server: String, isPersonal: Boolean, showClosed: Boolean, category: String,
+    ) = penguinService.getMatrixDetailed(server, isPersonal, showClosed, category)
 
     suspend fun getRogueTest() = apolloClient.query(TestQuery()).execute()
 

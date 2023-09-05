@@ -57,7 +57,7 @@ class SecondaryActivity : BaseCompatActivity() {
             )
 
             R.string.about_credit -> SecMarkdownPage.new(
-                inputStreamToStr(resources.openRawResource(R.raw.credits))
+                resources.openRawResource(R.raw.credits).inputStreamToStr()
             )
 
             R.string.about_settings -> SettingsPage.new()

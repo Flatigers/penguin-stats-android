@@ -46,13 +46,23 @@
     <string name="zone_recruit">公开招募统计</string>
     <string name="zone_gachabox">物资补给箱</string>
     <string name="s_server_kr">韩服</string>
+    <string name="minutes">分</string>
+    <string name="seconds">秒</string>
+    <string name="till_now">至今</string>
     <string name="s_is_night">使用夜间模式</string>
     <string name="item_material">材料</string>
     <string name="item_card">作战记录</string>
     <string name="item_chip">芯片</string>
     <string name="item_furniture">家具</string>
     <string name="item_activity">活动道具</string>
+    <string name="detailed_pattern_name">掉落组合</string>
+    <string name="detailed_pattern_interval">统计区间</string>
+    <string name="detailed_pattern_sample">样本数</string>
     <string name="donate_text_a">" 用户量激增，服务器月费上涨，企鹅数据的运营陷入了危机。站长红白为了保护喜爱的企鹅数据而决定…"</string>
     <string name="donate_text_b">随着访问量的增加，目前的小水管服务器已经有些不堪重负了。如果各位刀客塔能捐助一些 服务器费用 ，我们将不胜感激！</string>
     <string name="item_recruit">公招标签</string>
+    <string name="detailed_sanity_consumed">理智消耗</string>
+    <string name="detailed_clear_time">最短通关时间</string>
+    <string name="detailed_link_prts">Wiki</string>
+    <string name="detailed_link_map">地图</string>
 </resources>

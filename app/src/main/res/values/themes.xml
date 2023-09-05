@@ -4,6 +4,7 @@
         <!-- Primary&Secondary brand color. -->
         <item name="colorPrimary">@color/white_f</item>
         <item name="colorPrimaryVariant">@color/white_f</item>
+        <item name="android:colorPrimaryDark">#000000</item>
         <item name="colorOnPrimary">@color/green</item>
         <item name="colorAccent">@color/fb_blue</item>
         <item name="colorSurface">?attr/colorPrimary</item>

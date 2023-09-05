@@ -32,7 +32,9 @@ class ToolFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (Repository.isStatsUISaved()) {
-            viewModel.totalStats.set(Repository.readStatsUI())
+            MainScope().launch(Dispatchers.IO) {
+                viewModel.totalStats.set(Repository.readStatsUI())
+            }
         }
 
         binding.toolSwipeRefresher.run {

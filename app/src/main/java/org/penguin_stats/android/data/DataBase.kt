@@ -15,19 +15,24 @@ import org.penguin_stats.android.app.BaseApplication
     entities = [
         ResponseZones::class,
         ResponseStages::class,
-        ResponseItems::class
+        ResponseItems::class,
+        ResultPattern::class,
+        ResultMatrix::class,
     ]
 )
 @TypeConverters(
     ListStringConverter::class,
     ListDropInfoConverter::class,
-    ListIntConverter::class
+    ListIntConverter::class,
+    ListDropsConverter::class,
 )
 abstract class PenguinDataBase : RoomDatabase() {
 
     abstract fun responseZoneDao(): ResponseZonesDao
     abstract fun responseStageDao(): ResponseStagesDao
     abstract fun responseItemsDao(): ResponseItemsDao
+    abstract fun resultPatternDao(): ResultPatternDao
+    abstract fun resultMatrixDao(): ResultMatrixDao
 
     companion object {
         private var instance: PenguinDataBase? = null
@@ -92,5 +97,19 @@ class ListIntConverter {
         val a = json.substringBefore(":").toInt()
         val b = json.substringAfter(":").toInt()
         return listOf(a, b)
+    }
+}
+
+class ListDropsConverter {
+
+    @TypeConverter
+    fun fromListDrops(list: List<ResultPattern.Pattern.Drops>): String {
+        return Gson().toJson(list)
+    }
+
+    @TypeConverter
+    fun toListDrops(json: String): List<ResultPattern.Pattern.Drops> {
+        val typeOf = object : TypeToken<List<ListDropsConverter>>() {}.type
+        return Gson().fromJson(json, typeOf)
     }
 }

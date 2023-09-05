@@ -28,7 +28,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         binding.home = viewModel
@@ -41,12 +41,17 @@ class HomeFragment : Fragment() {
         val markWon = Markwon.create(requireActivity())
 
         if (Repository.isNoticeSaved()) {
-            Repository.readNotice()[0].run {
-                markWon.setMarkdown(
-                    binding.homeNotice.homeNoticeT,
-                    codeFromI18N(content_i18n, existence)
-                        .replace("\n", "\n\n")
-                )
+            MainScope().launch(Dispatchers.IO) {
+                val notice = Repository.readNotice()
+                notice[0].run {
+                    withContext(Dispatchers.Main) {
+                        markWon.setMarkdown(
+                            binding.homeNotice.homeNoticeT,
+                            codeFromI18N(content_i18n, existence)
+                                .replace("\n", "\n\n")
+                        )
+                    }
+                }
             }
         }
 

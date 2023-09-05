@@ -25,4 +25,8 @@ interface ResponseItemsDao {
     @Transaction
     @Query("select * from ResponseItems")
     fun loadAllItems(): List<ResponseItems>
+
+    @Transaction
+    @Query("select * from ResponseItems where itemId=:id")
+    fun loadItemById(id: String): ResponseItems
 }
