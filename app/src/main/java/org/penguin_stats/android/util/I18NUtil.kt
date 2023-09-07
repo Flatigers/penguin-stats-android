@@ -1,6 +1,5 @@
 package org.penguin_stats.android.util
 
-import android.util.Log
 import org.penguin_stats.android.app.AppConfig
 import org.penguin_stats.android.data.CodeI18N
 import org.penguin_stats.android.data.Existence
@@ -37,8 +36,6 @@ fun filterI18NExistence(existence: Existence): Boolean {
 
 fun filterI18NTime(existence: Existence): Boolean {
     val time = System.currentTimeMillis()
-    Log.e("time", time.toString())
-    Log.e("time", existence.cn.closeTime.toString())
     return when (AppConfig.getServer()) {
         "CN" -> existence.cn.closeTime > time && existence.cn.openTime < time
         "US" -> existence.us.closeTime > time && existence.us.openTime < time

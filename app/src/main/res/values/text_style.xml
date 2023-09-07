@@ -19,7 +19,7 @@
 
 
     <style name="smash_text_medium">
-        <item name="android:textSize">21sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAlignment">center</item>
     </style>

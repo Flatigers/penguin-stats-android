@@ -1,5 +1,6 @@
 package org.penguin_stats.android.util
 
+import android.util.Log
 import androidx.annotation.RawRes
 import org.penguin_stats.android.R
 import org.penguin_stats.android.app.BaseApplication
@@ -58,7 +59,9 @@ fun periodTimeString(start: Long, end: Long?): String {
     val eTime = if (end == null) {
         res.getString(R.string.till_now)
     } else {
-        "~ ${dFormat.format(end)}"
+        val t = dFormat.format((end))
+        Log.e("ttt", t)
+        "~ $t"
     }
 
     return "$sTime $eTime"
